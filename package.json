@@ -1,0 +1,29 @@
+{
+  "name": "sdc-qa-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beetlejuice-SDC/SDC-QA-API.git"
+  },
+  "author": "Ahmed Hanafy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Beetlejuice-SDC/SDC-QA-API/issues"
+  },
+  "homepage": "https://github.com/Beetlejuice-SDC/SDC-QA-API#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "redis": "^4.4.0"
+  }
+}
