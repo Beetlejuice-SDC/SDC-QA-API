@@ -48,8 +48,8 @@ ALTER TABLE questions ALTER COLUMN question_date TYPE TIMESTAMP USING to_timesta
 
 ALTER TABLE answers ALTER COLUMN date_written TYPE TIMESTAMP USING to_timestamp(date_written/1000);
 
-CREATE INDEX questions_product ON questions (product_id);
+CREATE INDEX idx_questions_product ON questions (product_id);
 
-CREATE INDEX answers_question ON answers (question_id);
+CREATE INDEX idx_answers_question ON answers (question_id);
 
-CREATE INDEX answers_answers_photos ON answers_photos (answer_id);
+CREATE INDEX idx_answers_answers_photos ON answers_photos (answer_id);
