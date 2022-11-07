@@ -11,7 +11,8 @@ module.exports = {
     console.log('Data retrieved');
   },
   addQuestion: async (req, res) => {
-    const params = [req.body.product_id, req.body.question_body, req.body.asker_name, req.body.asker_email, 0];
+    console.log('this is the req', req.body);
+    const params = [req.body.product_id, req.body.body, req.body.name, req.body.email, 0];
 
     await questionModels.post(params);
     res.status(201).send('Question Added');

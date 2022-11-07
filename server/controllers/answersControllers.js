@@ -12,7 +12,7 @@ module.exports = {
   },
   addAnswer: async (req, res) => {
     const photos = req.body.photos;
-    const params = [req.params.questionId, req.body.body, req.body.answerer_name, req.body.answerer_email, 0];
+    const params = [req.params.questionId, req.body.body, req.body.name, req.body.email, 0];
     const addAnswer = await answerModels.post(params);
     const answerId = addAnswer.rows[0].id;
     photos.forEach((url) => {
