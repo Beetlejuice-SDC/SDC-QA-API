@@ -18,12 +18,12 @@ CREATE TABLE questions (
 CREATE TABLE answers (
   id bigserial PRIMARY KEY,
   question_id BIGINT REFERENCES questions (question_id),
-  body TEXT,
+  answer_body TEXT,
   date_written BIGINT,
   answerer_name TEXT,
   answerer_email TEXT,
   reported BOOLEAN DEFAULT FALSE,
-  helpfulness INT
+  answer_helpfulness INT
 );
 
 CREATE TABLE answers_photos (

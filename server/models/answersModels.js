@@ -10,10 +10,10 @@ module.exports = {
   'results', (SELECT json_agg(
     json_build_object(
       'answer_id', id,
-      'body', body,
+      'body', answer_body,
       'date', date_written,
       'answerer_name', answerer_name,
-      'helpfulness', helpfulness,
+      'helpfulness', answer_helpfulness,
       'photos', (SELECT COALESCE(json_agg(
         json_build_object(
           'id', id,
@@ -27,7 +27,7 @@ module.exports = {
     return getAnswers;
   },
   post: async (params) => {
-    const queryStr = `INSERT INTO answers (question_id, body, date_written, answerer_name, answerer_email, helpfulness)
+    const queryStr = `INSERT INTO answers (question_id, answer_body, date_written, answerer_name, answerer_email, answer_helpfulness)
     VALUES ($1, $2, to_timestamp(${Date.now() / 1000}), $3, $4, $5) RETURNING id`;
     const addAnswer = await db.query(queryStr, params);
     return addAnswer;
@@ -39,7 +39,7 @@ module.exports = {
     return addPhotos;
   },
   putHelpfulness: async (answerId) => {
-    const queryStr = `UPDATE answers SET helpfulness = helpfulness + 1 WHERE id = ${answerId}`;
+    const queryStr = `UPDATE answers SET answer_helpfulness = answer_helpfulness + 1 WHERE id = ${answerId}`;
     const incrementHelpful = await db.query(queryStr);
     return incrementHelpful;
   },

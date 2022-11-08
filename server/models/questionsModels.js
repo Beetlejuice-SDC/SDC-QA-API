@@ -16,10 +16,10 @@ module.exports = {
           'answers', (SELECT json_object_agg(
             id, json_build_object(
               'id', id,
-              'body', body,
+              'body', answer_body,
               'date', date_written,
               'answerer_name', answerer_name,
-              'helpfulness', helpfulness,
+              'helpfulness', answer_helpfulness,
               'photos', (SELECT COALESCE(json_agg(answers_photos.url), '[]'::json) FROM answers_photos WHERE answer_id = answers.id)
             )
           ) FROM answers WHERE question_id = questions.question_id)

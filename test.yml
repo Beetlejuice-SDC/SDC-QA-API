@@ -1,0 +1,33 @@
+config:
+  target: "http://localhost:3001"
+  phases:
+    # - duration: 60
+    #   arrivalRate: 2
+    #   name: Warm up
+    # - duration: 120
+    #   arrivalRate: 5
+    #   rampTo: 50
+    #   name: Ramp up load
+    - duration: 600
+      arrivalRate: 200
+      name: Sustained load
+
+scenarios:
+  - name: "Load questions and answers"
+    flow:
+      - get:
+          url: "/qa/questions?product_id={{$randomNumber(1,1000011)}}"
+      - get:
+          url: "/qa/questions/{{$randomNumber(1,1000011)}}/answers"
+      - put:
+          url: "/qa/questions/{{$randomNumber(1,1000011)}}/helpful"
+      - put:
+          url: "/qa/questions/{{$randomNumber(1,1000011)}}/report"
+      - post:
+          url: "/qa/questions/"
+          json:
+            body: "{{ $randomString() }}"
+            answerer_name: "{{ $randomString() }}"
+            answerer_email: "{{ $randomString() }}"
+            photos: ["https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80", "https://images.unsplash.com/photo-1554774853-d50f9c681ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80" ]
+

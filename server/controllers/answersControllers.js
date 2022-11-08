@@ -8,7 +8,7 @@ module.exports = {
 
     const getAnswers = await answerModels.getAll(questionId, page, count);
     res.status(200).send(getAnswers.rows[0].json_build_object);
-    console.log('Data retrieved');
+    // console.log('Data retrieved');
   },
   addAnswer: async (req, res) => {
     const photos = req.body.photos;
@@ -23,13 +23,13 @@ module.exports = {
   incrementAnswerHelpful: async (req, res) => {
     const answerId = req.params.answerId;
     await answerModels.putHelpfulness(answerId);
-    console.log('Incremented helpfulness');
+    // console.log('Incremented helpfulness');
     res.sendStatus(204);
   },
   reportAnswer: async (req, res) => {
     const answerId = req.params.answerId;
     await answerModels.putReported(answerId);
-    console.log('Answer Reported');
+    // console.log('Answer Reported');
     res.sendStatus(204);
   }
 };

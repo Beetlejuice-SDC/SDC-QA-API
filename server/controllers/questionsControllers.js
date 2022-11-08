@@ -8,10 +8,9 @@ module.exports = {
 
     const getQuestions = await questionModels.getAll(productId, page, count);
     res.status(200).send(getQuestions.rows[0].json_build_object);
-    console.log('Data retrieved');
+    // console.log('Data retrieved');
   },
   addQuestion: async (req, res) => {
-    console.log('this is the req', req.body);
     const params = [req.body.product_id, req.body.body, req.body.name, req.body.email, 0];
 
     await questionModels.post(params);
@@ -20,13 +19,13 @@ module.exports = {
   incrementHelpful: async (req, res) => {
     const questionId = req.params.questionId;
     await questionModels.putHelpfulness(questionId);
-    console.log('Incremented helpfulness');
+    // console.log('Incremented helpfulness');
     res.sendStatus(204);
   },
   reportQuestion: async (req, res) => {
     const questionId = req.params.questionId;
     await questionModels.putReported(questionId);
-    console.log('Question Reported');
+    // console.log('Question Reported');
     res.sendStatus(204);
   }
 };
